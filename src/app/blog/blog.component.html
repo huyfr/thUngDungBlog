@@ -18,6 +18,7 @@
     <div *ngIf="rfc.body.errors.minlength">Độ dài tiếu thiểu 10 ký tự</div>
   </div>
   <button type="submit">Submit</button>
+  <button type="reset" (click)="onReset()">Reset</button>
 </form>
 
 <ul>

@@ -39,6 +39,11 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  onReset() {
+    this.submitted = false;
+    this.postForm.reset();
+  }
+
   deletPost(id: number) {
     const currentPost = this.postList[id];
     this.postService.deletePost(currentPost.id).subscribe(() => {
