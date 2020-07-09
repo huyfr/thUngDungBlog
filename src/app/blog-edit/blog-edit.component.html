@@ -1,1 +1,18 @@
-<p>blog-edit works!</p>
+<form class="ui form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <input type="text" placeholder="Title" formControlName="title">
+    <div class="ui pointing red basic label" *ngIf="submitted && rfc.title.errors">
+      <div *ngIf="rfc.title.errors.required">Không được để trống tiêu đề</div>
+      <div *ngIf="rfc.title.errors.minlength">Độ dài tối thiểu 10 ký tự</div>
+    </div>
+  </div>
+  <div class="field">
+    <input type="text" placeholder="Content" formControlName="body">
+    <div class="ui pointing red basic label" *ngIf="submitted && rfc.body.errors">
+      <div *ngIf="rfc.body.errors.required">Không được để trống tiêu đề</div>
+      <div *ngIf="rfc.body.errors.minlength">Độ dài tối thiểu 10 ký tự</div>
+    </div>
+  </div>
+  <button class="ui primary button" type="submit">Submit</button>
+  <button class="ui button" type="reset" (click)="onReset()">Reset</button>
+</form>

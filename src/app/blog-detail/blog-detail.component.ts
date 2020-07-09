@@ -20,13 +20,8 @@ export class BlogDetailComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = Number(paramMap.get('id'));
-      this.postService.getPostById(id).subscribe(
-        next => (this.currentPost = next),
-        error => {
-          console.log(error);
-          this.currentPost = null;
-        }
-      );
+      // tslint:disable-next-line:max-line-length
+      this.postService.getPostById(id).subscribe(next => (this.currentPost = next), error => {console.log(error); this.currentPost = null; });
     });
   }
 }
