@@ -1,1 +1,12 @@
-<p>blog-detail works!</p>
+<div *ngIf="currentPost; else nothing">
+  <h4>{{currentPost.title}}</h4>
+  <div>
+    {{currentPost.body}}
+  </div>
+</div>
+
+<ng-template #nothing>
+  <p>Không có dữ liệu</p>
+</ng-template>
+
+

@@ -1,5 +1,3 @@
-<h2>Simple blog</h2>
-
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
   <div>
     <label>Tiêu đề</label>
@@ -7,7 +5,7 @@
   </div>
   <div *ngIf="submitted && rfc.title.errors">
     <div *ngIf="rfc.title.errors.required">Không được để trống tiêu đề</div>
-    <div *ngIf="rfc.title.errors.minlength">Độ dài tiếu thiểu 10 ký tự</div>
+    <div *ngIf="rfc.title.errors.minLength">Độ dài tiếu thiểu 10 ký tự</div>
   </div>
   <div>
     <label>Nội dung</label>
@@ -15,19 +13,34 @@
   </div>
   <div *ngIf="submitted && rfc.body.errors">
     <div *ngIf="rfc.body.errors.required">Không được để trống nội dung</div>
-    <div *ngIf="rfc.body.errors.minlength">Độ dài tiếu thiểu 10 ký tự</div>
+    <div *ngIf="rfc.body.errors.minLength">Độ dài tiếu thiểu 10 ký tự</div>
   </div>
   <button type="submit">Submit</button>
   <button type="reset" (click)="onReset()">Reset</button>
 </form>
 
-<ul>
-  <li *ngFor="let p of postList; index as i">
-    <h3>
-      <a [routerLink]="['/blog', p.id]">Post ID: {{p.id}} - {{p.title}}</a>
-    </h3>
-    <a [routerLink]="['/blog', p.id, 'edit']">Edit</a>
-    <button (click)="deletPost(i)">Delete</button>
-  </li>
-</ul>
+<table class="ui striped table">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Title</th>
+    <th colspan="2">Option</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let post of postList; index as i">
+    <td>{{i}}</td>
+    <td>
+      <a [routerLink]="['/blog', post.id]">Post ID: {{post.id}} - {{post.title}}</a>
+    </td>
+    <td>
+      <a [routerLink]="['/blog', post.id, 'edit']">Edit</a>
+    </td>
+    <td>
+      <button (click)="deletePost(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
 

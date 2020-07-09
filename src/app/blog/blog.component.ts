@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IPost} from '../IPost';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../post.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blog',
@@ -14,21 +15,30 @@ export class BlogComponent implements OnInit {
   postForm: FormGroup;
   submitted = false;
 
-  constructor(private postService: PostService, private formBuilder: FormBuilder) {
+  constructor(private postService: PostService,
+              private formBuilder: FormBuilder,
+              private dialog: MatDialog,
+              ) {
   }
 
+  // done
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
       body: ['', [Validators.required, Validators.minLength(10)]],
     });
-    this.postService.getPost().subscribe(next => (this.postList = next), error => (this.postList = []));
+    this.postService.getPosts().subscribe(next => {
+      this.postList = next;
+      this.postService.postList = this.postList;
+    }, error => (this.postList = []));
   }
 
-  onSubmit() {
+  // done
+  onSubmit(): void {
     this.submitted = true;
     if (this.postForm.valid) {
       const {value} = this.postForm;
+      console.log(value);
       this.postService.createPost(value).subscribe(next => {
         this.postList.unshift(next);
         this.postForm.reset({
@@ -39,19 +49,23 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  onReset() {
+  // done
+  onReset(): void {
     this.submitted = false;
     this.postForm.reset();
   }
 
-  deletPost(id: number) {
+  // done
+  get rfc(): any {
+    return this.postForm.controls;
+  }
+
+  // done
+  deletePost(id: number): void {
     const currentPost = this.postList[id];
+    console.log(JSON.stringify(currentPost));
     this.postService.deletePost(currentPost.id).subscribe(() => {
       this.postList = this.postList.filter(post => post.id !== currentPost.id);
     });
-  }
-
-  get rfc() {
-    return this.postForm.controls;
   }
 }
