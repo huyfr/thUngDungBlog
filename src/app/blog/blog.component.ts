@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IPost} from '../IPost';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../post.service';
-import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blog',
@@ -16,9 +15,7 @@ export class BlogComponent implements OnInit {
   submitted = false;
 
   constructor(private postService: PostService,
-              private formBuilder: FormBuilder,
-              private dialog: MatDialog,
-              ) {
+              private formBuilder: FormBuilder) {
   }
 
   // done

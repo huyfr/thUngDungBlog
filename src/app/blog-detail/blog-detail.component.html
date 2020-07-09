@@ -1,5 +1,6 @@
+<div class="ui text container">
 <div *ngIf="currentPost; else nothing">
-  <h4>{{currentPost.title}}</h4>
+  <h2>{{currentPost.title}}</h2>
   <div>
     {{currentPost.body}}
   </div>
@@ -8,5 +9,4 @@
 <ng-template #nothing>
   <p>Không có dữ liệu</p>
 </ng-template>
-
-
+</div>

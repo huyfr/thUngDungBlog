@@ -10,9 +10,6 @@ import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PostService} from './post.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,10 +23,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    MatTabsModule,
-    MatButtonModule,
-    MatDialogModule
+    HttpClientModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent],
